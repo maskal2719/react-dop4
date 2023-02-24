@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {SuperButton} from "./components/SuperButton";
+import {SuperTodoList} from "./components/SuperTodoList";
+
+export type TaskDataType = {
+    id: number
+    title: string
+    isDone: boolean
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [tasks, setTasks] = useState<TaskDataType[]>([
+        {id: 1, title: 'Html', isDone: true},
+        {id: 2, title: 'Css', isDone: true},
+        {id: 3, title: 'Js', isDone: false},
+    ])
+
+
+    return (
+        <div>
+            {/*<SuperButton color={'red'} callBack={() => console.log('123')}>Red supe btn </SuperButton>*/}
+            {/*<SuperButton color={'secondary'} callBack={() => console.log('123')}>Without color supe btn</SuperButton>*/}
+            {/*<SuperButton disabled={true} callBack={() => console.log('123')}>Disabled </SuperButton>*/}
+
+
+            <SuperTodoList tasks={tasks}>
+                <SuperButton color={'red'} callBack={() => console.log('123')}>Red supe btn </SuperButton>
+                <SuperButton color={'secondary'} callBack={() => console.log('123')}>Without color supe btn</SuperButton>
+                <SuperButton disabled={true} callBack={() => console.log('123')}>Disabled </SuperButton>
+            </SuperTodoList>
+                <hr/>
+            <SuperTodoList tasks={tasks}>
+                <SuperButton disabled={true} callBack={() => console.log('123')}>Disabled </SuperButton>
+                <div>123123</div>
+                <div>123123</div>
+                <div>123123</div>
+                <div>123123</div>
+                <div>123123</div>
+            </SuperTodoList>
+            <hr/>
+        </div>
+    );
 }
 
 export default App;
